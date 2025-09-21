@@ -1,0 +1,45 @@
+<xml xmlns="https://developers.google.com/blockly/xml"><variables><variable id="^l0G(VCOY6ksAs2Ri;O[">whoseTurn</variable><variable id="g_Gi#M7MvW0|C!=p6smR">playerDicedNumber</variable><variable id="dPM@kcRk#3PWr.J=2ur`">player2</variable></variables><comment id="bSMBSLYF8OFdt#t%9p]|" x="925" y="631" w="160" h="120">
+whoseTurn = 0
+</comment><comment id="Wd1aq-s30SYBBj]e@nzs" x="0" y="942" w="210" h="120">
+playerDicedNumber = 0
+</comment><comment id="CAdQKkMpyxg7xZaQD`3y" x="255" y="942" w="450" h="120">
+def on_button_multiplayer_a_pressed(player2):
+</comment><comment id="/e=;mIKT(d_`ZV*8,!0c" x="750" y="942" w="240" h="120">
+global playerDicedNumber
+</comment><comment id="!%Y9Z.TGzW]evVjL8!5F" x="1035" y="942" w="480" h="120">
+if whoseTurn != 0 and mp.get_player_property(player2, mp.PlayerProperty.NUMBER) == whoseTurn:
+</comment><comment id="!veQ.a)!;$!)~@o*I2$J" x="0" y="1107" w="330" h="120">
+playerDicedNumber = randint(1, 6)
+</comment><comment id="bE5a-`/j~#v}Yc;kk(L1" x="375" y="1107" w="480" h="120">
+game.splash("Rolled " + ("" + str(playerDicedNumber)))
+</comment><comment id="fnWD,ppGT%lXl_Oag+,I" x="900" y="1107" w="420" h="120">
+mp.on_button_event(mp.MultiplayerButton.A,
+</comment><comment id="eck[Upsa}avEvUII]w@%" x="0" y="1272" w="300" h="120">
+ControllerButtonEvent.PRESSED,
+</comment><comment id="W4Jev/$`[^xTbm8ItMof" x="345" y="1272" w="320" h="120">
+on_button_multiplayer_a_pressed)
+</comment><comment id="7zINnu$6y+|-_pGPhmN=" x="710" y="1272" w="250" h="120">
+def on_update_interval():
+</comment><comment id="`@,FUl?*m/M=REc]ymnM" x="1005" y="1272" w="350" h="120">
+global whoseTurn, playerDicedNumber
+</comment><comment id="nd#cl0@PbGzcw`D=2imM" x="0" y="1437" w="260" h="120">
+if playerDicedNumber != 0:
+</comment><comment id="r@LW@OEoae8~qfDmzI:{" x="305" y="1437" w="260" h="120">
+if playerDicedNumber == 6:
+</comment><comment id="o:#}h#M|__Z`[WM2/(tU" x="610" y="1437" w="480" h="120">
+mp.game_over_player_win(mp.get_player_by_number(whoseTurn))
+</comment><comment id="fQvsSKqE~h$ycZWJF6az" x="0" y="1602" w="480" h="120">
+game.set_game_over_effect(True, effects.confetti)
+</comment><comment id="h9#)JNxLMF/=.(5FI(9:" x="525" y="1602" w="160" h="120">
+whoseTurn = 0
+</comment><comment id="*,[n6:=uFY(Id2ifHnO|" x="730" y="1602" w="210" h="120">
+playerDicedNumber = 0
+</comment><comment id="JF=#N@OR@!(%5I0Di!6Z" x="985" y="1602" w="180" h="120">
+if whoseTurn == 0:
+</comment><comment id="?gLj}d%,Vj7PL3DD5*YY" x="0" y="1767" w="250" h="120">
+whoseTurn = randint(1, 2)
+</comment><comment id="2EN:yhU_1Q_pjmj2/Q|-" x="295" y="1767" w="460" h="120">
+game.splash("Player " + ("" + str(whoseTurn)))
+</comment><comment id="(+/D].uH;zL$-IuYcRr5" x="800" y="1767" w="480" h="120">
+game.on_update_interval(100, on_update_interval)
+</comment></xml>
